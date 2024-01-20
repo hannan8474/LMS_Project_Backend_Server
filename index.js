@@ -1,6 +1,5 @@
 const express = require('express');
 const connectToMongoDB = require('./config/db');
-const addStudentController = require('./controllers/student_controller/add_student_controller');
 const cors = require('cors');
 const router = require('./routes');
 
@@ -15,6 +14,7 @@ app.get('/', (req, res) => {
     res.send(`<h1> Hello, World! </h1>`);
 });
 
+// routes
 app.use('/', router)
 
 app.listen(port, () => {
