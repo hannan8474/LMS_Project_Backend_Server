@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//This is a mongoose schema for a student in MongoDb
 const studentSchema = new mongoose.Schema({
     studentName: {
         type: String,
