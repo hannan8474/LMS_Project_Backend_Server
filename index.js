@@ -13,7 +13,7 @@ connectToMongoDB();
 app.get('/', (req, res) => {
     res.send(`<h1> Hello, World! </h1>`);
 });
-
+//routes
 app.use('/', router)
 
 app.listen(port, () => {

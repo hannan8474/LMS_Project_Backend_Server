@@ -13,6 +13,10 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    password: {
+        type: String,
+        required: true,
+    },
     rollNumber: {
         type: String,
         required: true,
@@ -34,7 +38,7 @@ const studentSchema = new mongoose.Schema({
         required: true,
     },
     subjects: [Object],
-});
+}, {timestamps: true});
 
 const Student = mongoose.model('students', studentSchema);
 

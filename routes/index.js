@@ -1,5 +1,5 @@
 const express = require('express')
-const studentRouter = require('./students-routes/students-routes')
+const studentRouter = require('./student-routes/student-routes')
 const router = express.Router()
 
 router.use('/api/v1', studentRouter)
