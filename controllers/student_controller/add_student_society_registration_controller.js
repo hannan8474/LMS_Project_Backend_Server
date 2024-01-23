@@ -1,28 +1,25 @@
-const Student = require("../../models/student_model/new_student");
+const studentSocietyRegistration = require("../../models/student_model/new_registration");
 
-const addStudentController = async (req, res) => {
+const addStudentSocietyRegistrationController = async (req, res) => {
     try {
         // Extracting data from the request body
-        const { name, cnic, email, password, rollNumber, batchNumber, shift, semester, subjectNumbers, subjects } = req.body;
+        const { name, rollNumber, email, department, semester, hobbies, aboutYourself} = req.body;
         // Creating a new instance of the Student model with the extracted data
-        const newStudent = new Student({
+        const newStudentSocietyRegistration = new studentSocietyRegistration({
             name,
-            cnic,
-            email,
-            password,
             rollNumber,
-            batchNumber,
-            shift,
+            email,
+            department,
             semester,
-            subjectNumbers,
-            subjects,
+            hobbies,
+            aboutYourself,
         });
         // Saving the new student to the database
-        await newStudent.save();
+        await newStudentSocietyRegistration.save();
         // Sending a JSON response indicating success and returning the new student data
         return res.json({
             success: true,
-            data: newStudent
+            data: newStudentSocietyRegistration
         });
         // Handling errors and sending a JSON response indicating failure
     } catch (error) {
@@ -32,4 +29,4 @@ const addStudentController = async (req, res) => {
         });
     }
 }
-module.exports = addStudentController;
+module.exports = addStudentSocietyRegistrationController;

@@ -1,20 +1,8 @@
 const mongoose = require('mongoose');
 
 //This is a mongoose schema for a student in MongoDb
-const studentSchema = new mongoose.Schema({
+const studentRegistrationSchema = new mongoose.Schema({
     name: {
-        type: String,
-        required: true,
-    },
-    cnic: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-    },
-    password: {
         type: String,
         required: true,
     },
@@ -22,11 +10,11 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    batchNumber: {
+    email: {
         type: String,
         required: true,
     },
-    shift: {
+    department: {
         type: String,
         required: true,
     },
@@ -34,13 +22,16 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    subjectNumbers: {
-        type: Number,
+    hobbies: {
+        type: String,
         required: true,
     },
-    subjects: [Object],
+    aboutYourself: {
+        type: String,
+        required: true,
+    },
 }, {timestamps: true});
 
-const Student = mongoose.model('students', studentSchema);
+const studentRegistration = mongoose.model('studentSocietyRegistration', studentRegistrationSchema);
 
-module.exports = Student;
+module.exports = studentRegistration;
