@@ -39,6 +39,10 @@ const studentSchema = new mongoose.Schema({
         required: true,
     },
     subjects: [Object],
+    adminId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
 }, {timestamps: true});
 
 const Student = mongoose.model('students', studentSchema);
