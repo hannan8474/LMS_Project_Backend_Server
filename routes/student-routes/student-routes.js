@@ -1,18 +1,19 @@
 const express = require('express');
-const addStudentController = require('../../controllers/student_controller/add_student_controller');
-const fetchStudentsController = require('../../controllers/student_controller/fetch_student_controller');
-const addStudentSocietyRegistrationController = require('../../controllers/student_controller/add_student_society_registration_controller')
-const fetchStudentSocietyRegistrationController = require('../../controllers/student_controller/fetch_student_society_registration_controller');
+const addStudentController = require('../../controllers/student_controller/addStudentController');
+const fetchStudentsController = require('../../controllers/student_controller/fetchStudentController');
+const addStudentSocietyRegistrationController = require('../../controllers/student_controller/addStudentSocietyRegistrationController')
 const isAdmin = require('../../middlewares/isAdmin');
+const isStudent = require('../../middlewares/isStudent');
+const multipartyMiddleware = require('../../middlewares/fileUploadMiddleWare');
 const studentRouter = express.Router();
 
 // iski admin sy salam dua krwani ha
 studentRouter.post('/add-student',
-    isAdmin,
+    isAdmin, 
+    multipartyMiddleware,
     addStudentController)
 
-studentRouter.get('/all-students', fetchStudentsController)
+studentRouter.get('/requested-student', isStudent, fetchStudentsController)
 studentRouter.post('/society-registration-student', addStudentSocietyRegistrationController)
-studentRouter.get('/all-students-society-registration-student', fetchStudentSocietyRegistrationController)
 
 module.exports = studentRouter

@@ -39,9 +39,13 @@ const studentSchema = new mongoose.Schema({
         required: true,
     },
     subjects: [Object],
+    profileImageLink: {
+        type: String,
+        required: true,
+    },
     adminId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "Admin"
     },
 }, {timestamps: true});
 

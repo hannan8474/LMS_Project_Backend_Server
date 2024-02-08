@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-const Admin = require('../models/student_model/admin_model');
+const Admin = require('../models/student_model/adminModel');
 const { config } = dotenv;
 config();
 
@@ -17,6 +17,12 @@ const isAdmin = async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, tokenSecret)
+        if (!decoded) {
+            return res.json ({
+                success: false,
+                message: 'Invalid token'
+            })
+        }
         req.user = decoded;
         // console.log(decoded); // { email: 'salman7@gmail.com', iat: 1698518113 }
         

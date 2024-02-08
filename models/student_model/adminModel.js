@@ -14,16 +14,6 @@ const adminRegistrationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    profileImageLink: {
-        type: String,
-        required: true,
-    },
-    role: {
-        type: String,
-        required: true,
-        enum: ["student", "admin"],
-        default: "admin",
-    },
 }, {timestamps: true});
 
 const Admin = mongoose.model('Admin', adminRegistrationSchema);

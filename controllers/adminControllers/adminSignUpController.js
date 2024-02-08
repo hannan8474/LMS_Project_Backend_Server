@@ -1,6 +1,4 @@
-const Admin = require('../../models/student_model/admin_model');
-const path = require('path')
-const fs = require('fs');
+const Admin = require('../../models/student_model/adminModel');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 const { config } = dotenv;
@@ -8,10 +6,14 @@ config();
 
 const adminSignUpController = async (req, res) => {
     try {
+
+        // Extracting data from the requested body
         const { name, email, password } = req.body;
 
+        // Checking if the user exists with this email
         const existingUser = await Admin.findOne({ email });
 
+        // if user with the email exists then return with success: false
         if (existingUser) {
             return res.json({
                 success: false,
@@ -19,43 +21,29 @@ const adminSignUpController = async (req, res) => {
             })
         }
 
-        const files = await req.files;
-        const { profileImage } = files;
-
-        // Create a dynamic URL based on server's protocol, host, and port
-        const baseUrl = `${req.protocol}://${req.get('host')}`;
-
-        // Create a unique filename based on original filename, current date, and field name
-        const currentDate = new Date().toISOString().replace(/[-:]/g, '').split('.')[0];
-        const uniqueFileName = `${profileImage.fieldName}_${currentDate}_${profileImage.originalFilename}`;
-
-        // Save the file with the unique filename
-        const savedFilePath = path.join(__dirname, '../../public', uniqueFileName);
-
-        // now rename the saved file with <uniqueFileName>
-        // Rename the file to the unique filename
-        fs.renameSync(profileImage.path, savedFilePath);
-
-        // product image file link
-        const profileImageLink = `${baseUrl}/${uniqueFileName}`;
-
+        // Making the password hash i.e encryption
         const SALT_ROUNDS = +process.env.SALT_ROUNDS;
-        //+ is a shorthand of parseint
+        // + is a shorthand of parseint
         
         const salt = bcrypt.genSaltSync(SALT_ROUNDS);
         const hashedPassword = bcrypt.hashSync(password, salt);
 
+        // Creating a new instance of the Admin model with the extracted data
         const newAdmin = new Admin({
             name,
             email,
             password: hashedPassword,
-            profileImageLink,
         })
+
+        // Saving the new student to the database
         await newAdmin.save();
+
+        // Sending response on successful save
         return res.json({
             success: true,
             admin: newAdmin,
         })
+        
     } catch (error) {
         console.error(error);
         return res.json({

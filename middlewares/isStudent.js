@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-const User = require('../models/student_model/admin_model');
+const Student = require('../models/student_model/newStudent');
 const { config } = dotenv;
 config();
 
-const isAdmin = async (req, res, next) => {
+const isStudent = async (req, res, next) => {
     let token = req.headers.authorization;
 
     if (token && token.startsWith('Bearer ')) {
@@ -20,12 +20,12 @@ const isAdmin = async (req, res, next) => {
         req.user = decoded;
         // console.log(decoded); // { email: 'salman7@gmail.com', iat: 1698518113 }
         
-        const user = await User.findOne({ email: req.user.email });
+        const student = await Student.findOne({ email: req.user.email });
 
-        if (user.role !== 'admin') {
+        if (!student) {
             return res.json({
                 success: false,
-                message: 'Unauthorized - must be admin role',
+                message: 'Unauthorized - must be student role',
             });
         }
 
@@ -34,4 +34,4 @@ const isAdmin = async (req, res, next) => {
         console.log(error)
     }
 }
-module.exports = isAdmin
+module.exports = isStudent
