@@ -35,7 +35,7 @@ const adminLoginController = async (req, res) => {
         })
     } 
 
-    // Generating an authToken if student successfully logins
+    // Generating an authToken if admin successfully logins
     const authToken = jwt.sign({ email: existingAdmin.email }, process.env.JWT_SECRET);
 
     return res.json({

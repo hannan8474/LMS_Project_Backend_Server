@@ -18,7 +18,7 @@ app.use(cors())
 // use a static folder
 app.use(express.static('public'));
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 connectToMongoDB();
 
 app.use('/', router)
