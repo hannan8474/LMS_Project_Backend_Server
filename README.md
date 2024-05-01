@@ -9,7 +9,7 @@
   Request is form type
 - **Response:**
 {<br />
-  "success": true,<br />>
+  "success": true,<br />
   "data": {<br />
     "name": "Nawazish",<br />
     "cnic": "33202-0713392-9",<br />
@@ -192,7 +192,7 @@
 {<br />
   "success": true,<br />
   "message": "user logged in successfully",<br />
-  "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhb2FiZHVsaGFubmFuNzU3QGdtYWlsLmNvbSIsImlhdCI6MTcxNDU2OTcwN30.<br />BiP_Puqb4GMv3lSFaiAcVq0r5O2p25X25-qqn11lgPw",<br />
+  "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhb2FiZHVsaGFubmFuNzU3QGdtYWlsLmNvbSIsImlhdCI6MTcxNDU2OTcwN30.BiP_Puqb4GMv3lSFaiAcVq0r5O2p25X25-qqn11lgPw",<br />
   "existingUser": {<br />
     "_id": "65d238d6bac6f41a6874bdd0",<br />
     "name": "Abdul Hannan",<br />
